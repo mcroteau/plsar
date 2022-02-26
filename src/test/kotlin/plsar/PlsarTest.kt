@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import plsar.BaseTest
-import example.*
+import example.foo.*
 
 class PlsarTest : BaseTest() {
 

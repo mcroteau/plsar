@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import plsar.BaseTest
 import plsar.model.web.HttpResponse
-import example.*
+import example.foo.*
 import java.io.File
 import java.io.FileInputStream
 import java.nio.file.Paths
