@@ -1,0 +1,46 @@
+<plsar:namespace var="eos"/>
+
+${todos.size()}
+<!-- // basic -->
+
+<eos:if condition="${todo.person.name == 'Raul'}">
+    is raul
+</eos:if>
+<eos:if condition="${name == 'Abdul'}">
+    is abdul
+</eos:if>
+<eos:if condition="${condition}">
+    meets condition
+</eos:if>
+<eos:if condition="${!opposite}">
+    !meets opposite
+</eos:if>
+<eos:if condition="${todos.size() > 0}">
+    size > 0
+</eos:if>
+
+
+<!-- // opposites -->
+
+<eos:if condition="${todo.person.name != 'Foo'}">
+    ! is foo
+</eos:if>
+<eos:if condition="${name != 'Jabar'}">
+    ! is jabar
+</eos:if>
+
+
+<!-- // hide em -->
+
+<eos:if condition="${todo.person.name != 'Raul'}">
+    hide ! is raul
+</eos:if>
+<eos:if condition="${name != 'Abdul'}">
+    hide ! is abdul
+</eos:if>
+<eos:if condition="${!condition}">
+    hidden
+</eos:if>
+<eos:if condition="${todos.size() == 0}">
+    size == 0 hidden
+</eos:if>

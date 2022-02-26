@@ -1,0 +1,20 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'application'
+}
+
+group 'foo.bar'
+version '0.100'
+
+application{
+    mainClass = "example.MainKt"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "net.plsar:plsar:0.003"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
