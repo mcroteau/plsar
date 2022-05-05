@@ -1,18 +1,18 @@
-<plsar:namespace var="eos"/>
+<plsar:namespace var="plsar"/>
 
 <table>
-    <eos:each in="${todos}" item="todo">
+    <plsar:each in="${todos}" item="todo">
         <tr>
             <td>${todo.id}</td>
             <td>
                 ${todo.title}:
                 <table>
-                    <eos:each in="${todo.people}" item="p">
+                    <plsar:each in="${todo.people}" item="p">
                         <tr>
                             <td>${p.id}:${p.name}</td>
-                            <eos:if condition="${p.name == person.name}">
+                            <plsar:if condition="${p.name == person.name}">
                                 :is alice:
-                            </eos:if>
+                            </plsar:if>
 <!--                            <eos:if condition="${p.name == 'Alice'}">-->
 <!--                                :alice=true:-->
 <!--                            </eos:if>-->
@@ -23,9 +23,9 @@
 <!--                                :not_awesome:-->
 <!--                            </eos:if>-->
                         </tr>
-                    </eos:each>
+                    </plsar:each>
                 </table>
             </td>
         </tr>
-    </eos:each>
+    </plsar:each>
 </table>
