@@ -1,8 +1,11 @@
+import example.MockInterceptor
+import example.MockPointcut
+import example.Todo
+import example.TodoRepo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import plsar.BaseTest
-import example.foo.*
 
 class PlsarTest : BaseTest() {
 

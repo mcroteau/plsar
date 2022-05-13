@@ -1,4 +1,4 @@
-    <plsar:namespace var="eos"/>
+    <plsar:namespace var="plsar"/>
 
     <h1>Add Person</h1>
 
@@ -12,11 +12,11 @@
 
     <h4>People for ${todo.title}</h4>
     <ul>
-    <eos:each in="${people}" item="person">
+    <plsar:each in="${people}" item="person">
         <li>${person.name}
             <form action="/todos/person/delete/${person.id}" method="post">
                 <input type="submit" value="Remove Person"/>
             </form>
         </li>
-    </eos:each>
+    </plsar:each>
     </ul>

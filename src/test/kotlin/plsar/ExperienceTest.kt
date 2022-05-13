@@ -1,9 +1,12 @@
+import example.Person
+import example.PersonRepo
+import example.Todo
+import example.TodoRepo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import plsar.BaseTest
 import plsar.model.web.HttpResponse
-import example.foo.*
 import java.io.File
 import java.io.FileInputStream
 import java.nio.file.Paths

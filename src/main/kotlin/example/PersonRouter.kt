@@ -1,4 +1,4 @@
-package example.foo
+package example
 
 import plsar.PLSAR
 import plsar.annotate.Design

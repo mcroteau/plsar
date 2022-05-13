@@ -1,4 +1,4 @@
-package example.foo
+package example
 
 import com.sun.net.httpserver.HttpExchange
 import plsar.model.web.HttpRequest

@@ -8,8 +8,8 @@ import plsar.startup.ContainerInit
 import plsar.util.Settings
 import plsar.web.Interceptor
 import plsar.web.Pointcut
-import example.foo.MockInterceptor
-import example.foo.MockPointcut
+import example.MockInterceptor
+import example.MockPointcut
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 open class BaseTest {

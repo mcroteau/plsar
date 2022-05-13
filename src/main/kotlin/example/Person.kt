@@ -1,4 +1,4 @@
-package example.foo
+package example
 
 class Person {
     var id: Int? = null
