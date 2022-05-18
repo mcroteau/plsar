@@ -45,7 +45,7 @@ tasks {
         classifier = "sources"
         from(sourceSets["main"].allSource)
     }
-    sourcesJar = sources
+    val sourcesJar = sources
     artifacts {
         add("archives", sourcesJar)
     }
@@ -58,7 +58,7 @@ tasks.test {
 
 tasks.test {
     extensions.configure(JacocoTaskExtension::class) {
-        destinationFile = file("$buildDir/jacoco/jacoco.exec")
+        var destinationFile = file("$buildDir/jacoco/jacoco.exec")
     }
     finalizedBy("jacocoTestReport")
 }
