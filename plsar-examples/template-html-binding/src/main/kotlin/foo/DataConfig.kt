@@ -1,4 +1,4 @@
-package example
+package foo
 
 import plsar.annotate.Config
 import plsar.annotate.Dependency

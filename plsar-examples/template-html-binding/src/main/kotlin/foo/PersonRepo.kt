@@ -1,4 +1,4 @@
-package example
+package foo
 
 import plsar.PLSAR
 import plsar.annotate.Inject
@@ -16,12 +16,11 @@ class PersonRepo {
     }
 
     fun save(person: Person) {
-        val sql = "insert into todo_people (todo_id, name, is_rad) values ([+],'[+]',[+])"
+        val sql = "insert into todo_people (todo_id, name) values ([+],'[+]')"
         repo?.save(
             sql, arrayOf<Any?>(
                 person.todoId,
-                person.name,
-                person.isRad
+                person.name
             )
         )
     }

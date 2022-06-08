@@ -1,11 +1,11 @@
-package example
+package foo
 
 import plsar.PLSAR
 
 fun main(){
     val plsar = PLSAR.Builder()
                 .port(8080)
-                .ambiance(30)
+                .ambiance(130)//# threads
                 .create()
     plsar.start()
 }

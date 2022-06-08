@@ -1,4 +1,4 @@
-package example
+package foo
 
 import plsar.PLSAR
 import plsar.annotate.Repo

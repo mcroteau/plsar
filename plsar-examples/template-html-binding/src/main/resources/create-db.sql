@@ -7,6 +7,5 @@ create table todos (
 create table todo_people (
 	id bigint PRIMARY KEY AUTO_INCREMENT,
 	todo_id bigint REFERENCES todos(id),
-	name varchar (250),
-	is_rad boolean default false
+	name varchar (250)
 );

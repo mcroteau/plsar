@@ -1,18 +1,15 @@
-package example
+package foo
 
 import plsar.PLSAR
-import plsar.annotate.*
 import plsar.annotate.HttpRouter
 import plsar.annotate.verbs.Get
-import plsar.annotate.verbs.Post
-import plsar.model.web.HttpRequest
-import plsar.model.web.HttpResponse
+import plsar.annotate.Text
 
 @HttpRouter
 class HelloRouter {
 
     @Text
-    @Get("/text")
+    @Get("/")
     fun text(): String {
         return "Hello!"
     }

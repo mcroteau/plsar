@@ -1,4 +1,4 @@
-package example
+package foo
 
 class Todo {
     var id: Int? = null
