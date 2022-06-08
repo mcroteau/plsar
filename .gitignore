@@ -26,7 +26,4 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
-secret.txt
-build.gradle
-notes.md
-plsar-framework/gradle.properties
+**/gradle.properties
