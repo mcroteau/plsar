@@ -33,8 +33,8 @@ import javax.sql.DataSource
 class PLSAR(builder: Builder) {
 
     val port : Int?
-    var cache : PLSAR.Cache? = null
-    var support: PLSAR.Support? = null
+    var cache : Cache? = null
+    var support: Support? = null
     var experienceProcessor : ExperienceProcessor ? = null
     var httpServer: HttpServer?
     var fragments: MutableMap<String?, Fragment?>
@@ -62,7 +62,7 @@ class PLSAR(builder: Builder) {
      *
      * Performs like J2EE taglibs
      *
-     * @param Fragment renders data within a view either via a condition or
+     * @param Fragment
      */
     fun registerFragment(fragment: Fragment): Boolean {
         val key = support!!.getName(fragment.javaClass.name)
@@ -76,7 +76,7 @@ class PLSAR(builder: Builder) {
      *
      * Performs like J2EE Filters
      *
-     * @param Interceptor performs action before a request is made.
+     * @param Interceptor
      */
     fun registerInterceptor(interceptor: Interceptor): Boolean {
         val key = support!!.getName(interceptor.javaClass.name)
@@ -88,7 +88,7 @@ class PLSAR(builder: Builder) {
         var port: Int? = null
         var httpServer: HttpServer? = null
         var executors: ExecutorService? = null
-        var support: PLSAR.Support? = null
+        var support: Support? = null
 
         fun port(port: Int?): Builder {
             this.port = port
@@ -97,7 +97,7 @@ class PLSAR(builder: Builder) {
 
         @Throws(IOException::class)
         fun ambiance(numberThreads: Int): Builder {
-            support = PLSAR.Support()
+            support = Support()
             executors = Executors.newFixedThreadPool(numberThreads)
             httpServer = HttpServer.create(InetSocketAddress(port!!), 0)
             httpServer?.setExecutor(executors)
