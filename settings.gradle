@@ -1,1 +1,3 @@
-rootProject.name="plsar"
+rootProject.name = "plsar"
+include 'plsar-framework'
+

@@ -1,14 +1,11 @@
-//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-//    id("org.jetbrains.kotlin.jvm") version "1.6.20"
-//    id("org.jetbrains.kotlin.plugin.serialization") version "1.6.20"
-//    id("org.jetbrains.dokka") version "1.6.20"
-//    id("maven-publish")
-//    id("java-library")
-//    id("signing")
-//    id("jacoco")
-    id("application")
+    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id 'org.jetbrains.dokka' version '1.6.20'
+    id 'maven-publish'
+    id 'application'
+    id 'signing'
+    id 'jacoco'
 }
 
 repositories {
@@ -18,126 +15,60 @@ repositories {
 group = "net.plsar"
 version = "0.003"
 
-val dokkaOutputDir = "$buildDir/dokka"
-
 application{
-    mainClass.set("example.Main")
+    mainClass.set("example.MainKt")
 }
-//
-//tasks.dokkaHtml {
-//    outputDirectory.set(file(dokkaOutputDir))
-//}
-//
-//val deleteDokkaOutputDir by tasks.register<Delete>("deleteDokkaOutputDirectory") {
-//    delete(dokkaOutputDir)
-//}
-//
-//val javadocJar = tasks.register<Jar>("javadocJar") {
-//    dependsOn(deleteDokkaOutputDir, tasks.dokkaHtml)
-//    archiveClassifier.set("javadoc")
-//    from(dokkaOutputDir)
-//}
-//
-//var sourcesJar : Jar? = null
-//tasks {
-//    val sources by creating(Jar::class) {
-//        dependsOn(JavaPlugin.CLASSES_TASK_NAME)
-//        classifier = "sources"
-//        from(sourceSets["main"].allSource)
-//    }
-//    val sourcesJar = sources
-//    artifacts {
-//        add("archives", sourcesJar)
-//    }
-//}
-//
-//tasks.test {
-//    useJUnitPlatform()
-//    testLogging.showStandardStreams = true
-//}
-//
-//tasks.test {
-//    extensions.configure(JacocoTaskExtension::class) {
-//        var destinationFile = file("$buildDir/jacoco/jacoco.exec")
-//    }
-//    finalizedBy("jacocoTestReport")
-//}
-//
-//jacoco {
-//    toolVersion = "0.8.7"
-//}
-//
-//tasks.jacocoTestReport {
-//    reports {
-//        xml.isEnabled = false
-//        csv.isEnabled = false
-//        html.isEnabled = true
-//        html.destination = file("$buildDir/reports/coverage")
-//    }
-//}
-//
-//val coverage by tasks.registering {
-//    group = "coverage"
-//    description = "Runs the unit tests with coverage"
-//    dependsOn(":test", ":jacocoTestReport")
-//    tasks["jacocoTestReport"].mustRunAfter(tasks["test"])
-//    tasks["jacocoTestCoverageVerification"].mustRunAfter(tasks["jacocoTestReport"])
-//}
 
 dependencies {
-    implementation("com.h2database:h2:2.1.210")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation("org.jacoco:org.jacoco.core:0.8.7")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    implementation "com.h2database:h2:2.1.210"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
+    implementation "org.jacoco:org.jacoco.core:0.8.7"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.8.2"
 }
 
+//
 //publishing {
 //    repositories {
-//        maven {
-//            name = "sonatype"
-//            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//            credentials {
-//                username = ""
-//                password = ""
-//            }
-//        }
-//    }
+//        maven(MavenPublication) {
+//            groupId = 'plsar.net'
+//            artifactId = 'plsar'
+//            version = '0.001'
+//            components.kotlin
 //
-//    publications {
-//        create<MavenPublication>("maven") {
-//            groupId = "net.plsar"
-//            artifactId = "plsar"
-//            version = "0.003"
-//            from(components["kotlin"])
-//        }
-//        withType<MavenPublication> {
-//            artifact(javadocJar)
-//            artifact(sourcesJar)
+//            repositories {
+//                maven {
+//                    def releaseRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+//                    def snapshotRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+//                    url = project.hasProperty('release') ? releaseRepoUrl : snapshotRepoUrl
+//                }
+//            }
+//
 //            pom {
-//                name.set("plsar")
-//                description.set("A Kotlin web Framework")
-//                url.set("http://www.plsar.net")
+//                name "plsar"
+//                packaging "jar"
+//                description "PLSAR web framework"
+//                url "plsar.net"
+//
+//                scm {
+//                    connection "scm:git:git://github.com/mcroteau/plsar.git"
+//                    developerConnection "scm:git:git://github.com/mcroteau/plsar.git"
+//                    url "https://github.com/mcroteau/plsar"
+//                }
+//
 //                licenses {
 //                    license {
-//                        name.set("MIT license")
-//                        url.set("https://opensource.org/licenses/MIT")
+//                        name "MIT Licensne"
+//                        url "https://opensource.org/licenses/MIT"
 //                    }
 //                }
-//                issueManagement {
-//                    system.set("Github")
-//                    url.set("https://github.com/mcroteau/plsar/issues")
-//                }
-//                scm {
-//                    connection.set("https://github.com/mcroteau/plsar.git")
-//                    url.set("https://github.com/mcroteau/plsar")
-//                }
+//
 //                developers {
 //                    developer {
-//                        name.set("Mike Croteau")
-//                        email.set("croteau.mike@gmail.com")
+//                        id "mike"
+//                        name "Mike Croteau"
+//                        email "croteau.mike@gmail.com"
 //                    }
 //                }
 //            }
@@ -146,18 +77,5 @@ dependencies {
 //}
 //
 //signing {
-//    useInMemoryPgpKeys(
-//        "",
-//        ""
-//    )
-//    sign(publishing.publications)
-//}
-
-//val compileKotlin: KotlinCompile by tasks
-//compileKotlin.kotlinOptions {
-//    jvmTarget = "1.8"
-//}
-//val compileTestKotlin: KotlinCompile by tasks
-//compileTestKotlin.kotlinOptions {
-//    jvmTarget = "1.8"
+//    sign publishing.publications.mavenJava
 //}
