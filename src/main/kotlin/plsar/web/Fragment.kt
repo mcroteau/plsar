@@ -3,7 +3,7 @@ package plsar.web
 import com.sun.net.httpserver.HttpExchange
 import plsar.model.web.HttpRequest
 
-interface Pointcut {
+interface Fragment {
     val key: String?
     val isEvaluation: Boolean
     fun isTrue(httpRequest: HttpRequest?, exchange: HttpExchange?): Boolean

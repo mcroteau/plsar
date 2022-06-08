@@ -2,9 +2,9 @@ package example
 
 import com.sun.net.httpserver.HttpExchange
 import plsar.model.web.HttpRequest
-import plsar.web.Pointcut
+import plsar.web.Fragment
 
-class MockPointcut : Pointcut {
+class MockFragment : Fragment {
     override val key: String?
         get() = "todo:pointcut"
     override val isEvaluation: Boolean

@@ -5,7 +5,7 @@ import plsar.exception.PlsarException
 import plsar.model.Iterable
 import plsar.model.web.HttpRequest
 import plsar.model.web.HttpResponse
-import plsar.web.Pointcut
+import plsar.web.Fragment
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 import java.lang.reflect.Type
@@ -24,7 +24,7 @@ class ExperienceProcessor {
         NoSuchMethodException::class,
         InvocationTargetException::class
     )
-    fun process(pointcuts: Map<String?, Pointcut?>?,
+    fun process(pointcuts: Map<String?, Fragment?>?,
                 view: String,
                 httpResponse: HttpResponse,
                 request: HttpRequest?,
@@ -300,7 +300,7 @@ class ExperienceProcessor {
         request: HttpRequest?,
         exchange: HttpExchange,
         entries: MutableList<String>,
-        pointcuts: Map<String?, Pointcut?>?
+        pointcuts: Map<String?, Fragment?>?
     ) {
         for ((_, pointcut) in pointcuts!!) {
             val key = pointcut?.key //dice:rollem in <dice:rollem> is key

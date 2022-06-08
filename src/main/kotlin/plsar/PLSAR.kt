@@ -15,7 +15,7 @@ import plsar.startup.ExchangeStartup
 import plsar.util.Settings
 import plsar.web.HttpTransmission
 import plsar.web.Interceptor
-import plsar.web.Pointcut
+import plsar.web.Fragment
 import java.io.*
 import java.lang.reflect.Type
 import java.math.BigDecimal
@@ -37,7 +37,7 @@ class PLSAR(builder: Builder) {
     var support: PLSAR.Support? = null
     var experienceProcessor : ExperienceProcessor ? = null
     var httpServer: HttpServer?
-    var pointcuts: MutableMap<String?, Pointcut?>
+    var pointcuts: MutableMap<String?, Fragment?>
     var interceptors: MutableMap<String?, Interceptor?>
 
     fun stop(){
@@ -56,9 +56,9 @@ class PLSAR(builder: Builder) {
         return this
     }
 
-    fun registerPointcut(pointcut: Pointcut): Boolean {
-        val key = support!!.getName(pointcut.javaClass.name)
-        pointcuts[key] = pointcut
+    fun registerPointcut(fragment: Fragment): Boolean {
+        val key = support!!.getName(fragment.javaClass.name)
+        pointcuts[key] = fragment
         return true
     }
 
@@ -104,7 +104,7 @@ class PLSAR(builder: Builder) {
     class Cache(builder: Builder) {
         var events: Any? = null
         var settings: Settings?
-        var pointCuts: Map<String?, Pointcut?>?
+        var pointCuts: Map<String?, Fragment?>?
         var interceptors: Map<String?, Interceptor?>?
         var objectStorage: ObjectStorage
         var propertyStorage: PropertyStorage
@@ -135,14 +135,14 @@ class PLSAR(builder: Builder) {
             var repo: PLSAR.Repo? = null
             var settings: Settings? = null
             var experienceProcessor: ExperienceProcessor? = null
-            var pointcuts: Map<String?, Pointcut?>? = null
+            var pointcuts: Map<String?, Fragment?>? = null
             var interceptors: Map<String?, Interceptor?>? = null
             fun withSettings(settings: Settings?): Builder {
                 this.settings = settings
                 return this
             }
 
-            fun withPointCuts(pointcuts: Map<String?, Pointcut?>?): Builder {
+            fun withPointCuts(pointcuts: Map<String?, Fragment?>?): Builder {
                 this.pointcuts = pointcuts
                 return this
             }

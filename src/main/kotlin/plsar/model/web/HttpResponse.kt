@@ -1,18 +1,13 @@
 package plsar.model.web
 
-import kotlinx.serialization.Contextual
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import java.util.*
 
-@Serializable
-@SerialName("HttpResponse")
 class HttpResponse {
     var title: String? = ""
     var keywords: String? = ""
     var description: String? = ""
 
-    var data: MutableMap<String?, @Contextual Any?>
+    var data: MutableMap<String?, Any?>
 
     operator fun set(key: String?, value: Any?) {
         data[key] = value

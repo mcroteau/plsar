@@ -26,6 +26,6 @@ gradle-app.setting
 .classpath
 
 secret.txt
-build.d
+build.gradle
 notes.md
 gradle.properties

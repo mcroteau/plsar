@@ -7,6 +7,7 @@ import plsar.annotate.Inject
 import plsar.annotate.Variable
 import plsar.annotate.verbs.Get
 import plsar.annotate.verbs.Post
+import plsar.model.Element
 import plsar.model.web.HttpRequest
 import plsar.model.web.HttpResponse
 
@@ -25,10 +26,9 @@ class PersonRouter {
     @Get("/todos/person/add/{id}")
     @Design("designs/default.htm")
     fun addPersonRender(resp: HttpResponse,
-                        @Variable id: Int
-                    ): String {
-        val todo = todoRepo!!.get(id)
-        val people = personRepo!!.list(id)
+                        @Variable id: Int): String {
+        val todo = todoRepo?.get(id)
+        val people = personRepo?.list(id)
         resp.set("people", people)
         resp.set("todo", todo)
         return "/pages/todo/add_person.htm"
@@ -36,8 +36,7 @@ class PersonRouter {
 
     @Post("/todos/person/add")
     fun addPerson(req: HttpRequest?,
-                    resp: HttpResponse?
-                ): String {
+                  resp: HttpResponse?): String {
         val todoPerson = support?.get(req!!, Person::class.java) as Person
         personRepo!!.save(todoPerson)
         return "[redirect]/todos/person/add/" + todoPerson.todoId
@@ -46,8 +45,7 @@ class PersonRouter {
     @Post("/todos/person/delete/{id}")
     fun deletePerson(
         resp: HttpResponse,
-        @Variable id: Int?
-    ): String {
+        @Variable id: Int?): String {
         personRepo!!.delete(id!!)
         resp.set("message", "successfully deleted person from todo!")
         return "[redirect]/"

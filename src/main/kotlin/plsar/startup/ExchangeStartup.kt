@@ -4,7 +4,7 @@ import plsar.PLSAR
 import plsar.processor.ExperienceProcessor
 import plsar.util.*
 import plsar.web.Interceptor
-import plsar.web.Pointcut
+import plsar.web.Fragment
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -12,7 +12,7 @@ import java.util.*
 
 class ExchangeStartup(
     val port : Int?,
-    var pointcuts: Map<String?, Pointcut?>,
+    var pointcuts: Map<String?, Fragment?>,
     var interceptors: Map<String?, Interceptor?>,
     var experienceProcessor: ExperienceProcessor) {
 

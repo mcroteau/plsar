@@ -7,9 +7,9 @@ import plsar.processor.ExperienceProcessor
 import plsar.startup.ContainerInit
 import plsar.util.Settings
 import plsar.web.Interceptor
-import plsar.web.Pointcut
+import plsar.web.Fragment
 import example.MockInterceptor
-import example.MockPointcut
+import example.MockFragment
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 open class BaseTest {
@@ -39,8 +39,8 @@ open class BaseTest {
         propertiesFiles.add("plsar.props")
         settings.propertiesFiles = propertiesFiles
 
-        val pointcuts = mutableMapOf<String?, Pointcut?>()
-        val pointcut = MockPointcut()
+        val pointcuts = mutableMapOf<String?, Fragment?>()
+        val pointcut = MockFragment()
         val pointcutName = support!!.getName(pointcut.javaClass.name)
         pointcuts[pointcutName] = pointcut
         val interceptors = mutableMapOf<String?, Interceptor?>()

@@ -1,5 +1,5 @@
 import example.MockInterceptor
-import example.MockPointcut
+import example.MockFragment
 import example.Todo
 import example.TodoRepo
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,7 +11,7 @@ class PlsarTest : BaseTest() {
 
     @Test
     fun testRegisterPointcut() {
-        plsar?.registerPointcut(MockPointcut())
+        plsar?.registerPointcut(MockFragment())
         assertEquals(plsar?.pointcuts?.size, 1)
     }
 
