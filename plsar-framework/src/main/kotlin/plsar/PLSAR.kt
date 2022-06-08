@@ -37,7 +37,7 @@ class PLSAR(builder: Builder) {
     var support: PLSAR.Support? = null
     var experienceProcessor : ExperienceProcessor ? = null
     var httpServer: HttpServer?
-    var pointcuts: MutableMap<String?, Fragment?>
+    var fragments: MutableMap<String?, Fragment?>
     var interceptors: MutableMap<String?, Interceptor?>
 
     fun stop(){
@@ -47,7 +47,7 @@ class PLSAR(builder: Builder) {
     @Throws(Exception::class)
     fun start(): PLSAR {
         experienceProcessor = ExperienceProcessor()
-        val exchangeStartup = ExchangeStartup(port, pointcuts, interceptors, experienceProcessor!!)
+        val exchangeStartup = ExchangeStartup(port, fragments, interceptors, experienceProcessor!!)
         exchangeStartup.start()
         cache = exchangeStartup.cache
         val modulator = HttpTransmission(cache)
@@ -56,19 +56,27 @@ class PLSAR(builder: Builder) {
         return this
     }
 
-    fun registerPointcut(fragment: Fragment): Boolean {
+    /**
+     * Adds view fragment to the list of view fragments
+     * to be performed upon a request.
+     *
+     * Performs like J2EE taglibs
+     *
+     * @param Fragment renders data within a view either via a condition or
+     */
+    fun registerFragment(fragment: Fragment): Boolean {
         val key = support!!.getName(fragment.javaClass.name)
-        pointcuts[key] = fragment
+        fragments[key] = fragment
         return true
     }
 
     /**
-     * Adds the interceptor to the list of interceptors
+     * Adds interceptor to the list of interceptors
      * to be performed upon a request.
      *
-     * Performs like JEE Filters
+     * Performs like J2EE Filters
      *
-     * @param Interceptor performed before a request is made.
+     * @param Interceptor performs action before a request is made.
      */
     fun registerInterceptor(interceptor: Interceptor): Boolean {
         val key = support!!.getName(interceptor.javaClass.name)
@@ -104,7 +112,7 @@ class PLSAR(builder: Builder) {
     class Cache(builder: Builder) {
         var events: Any? = null
         var settings: Settings?
-        var pointCuts: Map<String?, Fragment?>?
+        var fragments: Map<String?, Fragment?>?
         var interceptors: Map<String?, Interceptor?>?
         var objectStorage: ObjectStorage
         var propertyStorage: PropertyStorage
@@ -135,15 +143,15 @@ class PLSAR(builder: Builder) {
             var repo: PLSAR.Repo? = null
             var settings: Settings? = null
             var experienceProcessor: ExperienceProcessor? = null
-            var pointcuts: Map<String?, Fragment?>? = null
+            var fragments: Map<String?, Fragment?>? = null
             var interceptors: Map<String?, Interceptor?>? = null
             fun withSettings(settings: Settings?): Builder {
                 this.settings = settings
                 return this
             }
 
-            fun withPointCuts(pointcuts: Map<String?, Fragment?>?): Builder {
-                this.pointcuts = pointcuts
+            fun withFragments(fragments: Map<String?, Fragment?>?): Builder {
+                this.fragments = fragments
                 return this
             }
 
@@ -169,7 +177,7 @@ class PLSAR(builder: Builder) {
 
         init {
             repo = builder.repo
-            pointCuts = builder.pointcuts
+            fragments = builder.fragments
             interceptors = builder.interceptors
             settings = builder.settings
             experienceProcessor = builder.experienceProcessor
@@ -657,7 +665,7 @@ class PLSAR(builder: Builder) {
         port  = builder.port
         support = builder.support
         httpServer = builder.httpServer
-        pointcuts = HashMap()
+        fragments = HashMap()
         interceptors = HashMap()
     }
 }

@@ -211,8 +211,8 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         var designOutput = ""
                         try {
                             val uxProcessor = cache?.experienceProcessor
-                            val pointcuts = cache?.pointCuts
-                            designOutput = uxProcessor!!.process(pointcuts, completePage, httpResponse, httpRequest, httpExchange)
+                            val fragments = cache?.fragments
+                            designOutput = uxProcessor!!.process(fragments, completePage, httpResponse, httpRequest, httpExchange)
                         } catch (ex: Exception) {
                             ex.printStackTrace()
                             try {
@@ -232,8 +232,8 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         var pageOutput : String ?
                         try {
                             val uxProcessor = cache?.experienceProcessor
-                            val pointcuts = cache?.pointCuts
-                            pageOutput = uxProcessor!!.process(pointcuts, pageContent, httpResponse, httpRequest, httpExchange)
+                            val fragments = cache?.fragments
+                            pageOutput = uxProcessor!!.process(fragments, pageContent, httpResponse, httpRequest, httpExchange)
                             if (!pageOutput.startsWith("<html>")) {
                                 pageOutput = "<html>$pageOutput"
                                 pageOutput = "$pageOutput</html>"
@@ -303,9 +303,9 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         var designOutput = ""
                         try {
                             val uxProcessor = cache?.experienceProcessor
-                            val pointcuts = cache?.pointCuts
+                            val fragments = cache?.fragments
                             designOutput =
-                                uxProcessor!!.process(pointcuts, completePage, httpResponse, httpRequest, httpExchange)
+                                uxProcessor!!.process(fragments, completePage, httpResponse, httpRequest, httpExchange)
                         } catch (ex: Exception) {
                             ex.printStackTrace()
                             try {
@@ -325,9 +325,9 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         var pageOutput : String ?
                         try {
                             val uxProcessor = cache?.experienceProcessor
-                            val pointcuts = cache?.pointCuts
+                            val fragments = cache?.fragments
                             pageOutput =
-                                uxProcessor!!.process(pointcuts, pageContent, httpResponse, httpRequest, httpExchange)
+                                uxProcessor!!.process(fragments, pageContent, httpResponse, httpRequest, httpExchange)
                             if (!pageOutput.startsWith("<html>")) {
                                 pageOutput = "<html>$pageOutput"
                                 pageOutput = "$pageOutput</html>"

@@ -24,7 +24,7 @@ class ExperienceProcessor {
         NoSuchMethodException::class,
         InvocationTargetException::class
     )
-    fun process(pointcuts: Map<String?, Fragment?>?,
+    fun process(fragments: Map<String?, Fragment?>?,
                 view: String,
                 httpResponse: HttpResponse,
                 request: HttpRequest?,
@@ -35,7 +35,7 @@ class ExperienceProcessor {
         setNamespace(entries)
 
         if (exchange != null) {
-            evaluatePointcuts(request, exchange, entries, pointcuts)
+            evaluateFragments(request, exchange, entries, fragments)
         }
 
         for (a6 in entries.indices) {
@@ -296,14 +296,14 @@ class ExperienceProcessor {
         }
     }
 
-    private fun evaluatePointcuts(
+    private fun evaluateFragments(
         request: HttpRequest?,
         exchange: HttpExchange,
         entries: MutableList<String>,
-        pointcuts: Map<String?, Fragment?>?
+        fragments: Map<String?, Fragment?>?
     ) {
-        for ((_, pointcut) in pointcuts!!) {
-            val key = pointcut?.key //dice:rollem in <dice:rollem> is key
+        for ((_, fragment) in fragments!!) {
+            val key = fragment?.key //dice:rollem in <dice:rollem> is key
             val open = "<$key>"
             val rabbleDos = "<$key/>"
             val close = "</$key>"
@@ -312,9 +312,9 @@ class ExperienceProcessor {
                 if (entryBase.trim { it <= ' ' }.startsWith("<!--")) entries[a6] = ""
                 if (entryBase.trim { it <= ' ' }.startsWith("<%--")) entries[a6] = ""
                 if (entryBase.contains(rabbleDos) &&
-                    !pointcut!!.isEvaluation
+                    !fragment!!.isEvaluation
                 ) {
-                    val output = pointcut.process(request, exchange)
+                    val output = fragment.process(request, exchange)
                     if (output != null) {
                         entryBase = entryBase.replace(rabbleDos, output)
                         entries[a6] = entryBase
@@ -322,16 +322,16 @@ class ExperienceProcessor {
                 }
                 if (entryBase.contains(open)) {
                     val stop = getAttributeClose(a6, close, entries)
-                    if (pointcut!!.isEvaluation) {
-                        val isTrue = pointcut.isTrue(request, exchange)
+                    if (fragment!!.isEvaluation) {
+                        val isTrue = fragment.passesCondition(request, exchange)
                         if (!isTrue) {
                             for (a4 in a6 until stop) {
                                 entries[a4] = ""
                             }
                         }
                     }
-                    if (!pointcut.isEvaluation) {
-                        val output = pointcut.process(request, exchange)
+                    if (!fragment.isEvaluation) {
+                        val output = fragment.process(request, exchange)
                         if (output != null) {
                             entryBase = entryBase.replace(open, output)
                             entryBase = entryBase.replace(open + close, output)

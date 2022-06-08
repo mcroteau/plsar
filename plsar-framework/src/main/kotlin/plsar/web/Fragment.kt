@@ -6,7 +6,7 @@ import plsar.model.web.HttpRequest
 interface Fragment {
     val key: String?
     val isEvaluation: Boolean
-    fun isTrue(httpRequest: HttpRequest?, exchange: HttpExchange?): Boolean
+    fun passesCondition(httpRequest: HttpRequest?, exchange: HttpExchange?): Boolean
     fun process(httpRequest: HttpRequest?, exchange: HttpExchange?): String?
 
     companion object {
