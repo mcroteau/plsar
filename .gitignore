@@ -3,6 +3,7 @@
 
 .gradle
 **/build/
+**/media/
 !src-down/**/build/
 **/target/
 !src-down/**/target/

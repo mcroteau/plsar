@@ -31,7 +31,7 @@ class PersonRouter {
         val people = personRepo?.list(id)
         resp.set("people", people)
         resp.set("todo", todo)
-        return "/pages/todo/add_person.htm"
+        return "/pages/person/add.htm"
     }
 
     @Post("/todos/person/add")

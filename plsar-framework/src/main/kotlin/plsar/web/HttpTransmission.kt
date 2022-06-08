@@ -89,8 +89,7 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
             }
 
             if (method.isAnnotationPresent(Text::class.java) ||
-                method.isAnnotationPresent(Plain::class.java)
-            ) {
+                method.isAnnotationPresent(Plain::class.java)) {
                 val headers = httpExchange.responseHeaders
                 headers.add("content-type", "text/html")
                 httpExchange.sendResponseHeaders(200, methodResponse.length.toLong())
@@ -114,9 +113,26 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                 httpExchange.close()
                 return
             } else {
-                val title = httpResponse?.title
-                val keywords = httpResponse?.keywords
-                val description = httpResponse?.description
+
+                var title = httpResponse?.title
+                var keywords = httpResponse?.keywords
+                var description = httpResponse?.description
+
+                if(method.isAnnotationPresent(Title::class.java)){
+                    println("title annotation present")
+                    val titleAnnotation = method.getAnnotation(Title::class.java)
+                    title = titleAnnotation.value
+                }
+
+                if(method.isAnnotationPresent(Meta::class.java)){
+                    println("meta annotation present")
+                    val meta = method.getAnnotation(Meta::class.java)
+                    keywords = meta.keywords
+                    description = meta.description
+                }
+
+                println("$title, $keywords, $description")
+
                 if (!support.isJar) {
                     val webPath = Paths.get("webapp")
                     if (methodResponse.startsWith("/")) {
@@ -185,19 +201,18 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         val bottom = bits[1]
                         header = header + pageContent
                         var completePage = header + bottom
-                        completePage = completePage.replace("${title}", title!!)
+                        completePage = completePage.replace("\${title}", title!!)
                         if (keywords != null) {
-                            completePage = completePage.replace("${keywords}", keywords)
+                            completePage = completePage.replace("\${keywords}", keywords)
                         }
                         if (description != null) {
-                            completePage = completePage.replace("${description}", description)
+                            completePage = completePage.replace("\${description}", description)
                         }
                         var designOutput = ""
                         try {
                             val uxProcessor = cache?.experienceProcessor
                             val pointcuts = cache?.pointCuts
-                            designOutput =
-                                uxProcessor!!.process(pointcuts, completePage, httpResponse, httpRequest, httpExchange)
+                            designOutput = uxProcessor!!.process(pointcuts, completePage, httpResponse, httpRequest, httpExchange)
                         } catch (ex: Exception) {
                             ex.printStackTrace()
                             try {
@@ -218,8 +233,7 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                         try {
                             val uxProcessor = cache?.experienceProcessor
                             val pointcuts = cache?.pointCuts
-                            pageOutput =
-                                uxProcessor!!.process(pointcuts, pageContent, httpResponse, httpRequest, httpExchange)
+                            pageOutput = uxProcessor!!.process(pointcuts, pageContent, httpResponse, httpRequest, httpExchange)
                             if (!pageOutput.startsWith("<html>")) {
                                 pageOutput = "<html>$pageOutput"
                                 pageOutput = "$pageOutput</html>"
