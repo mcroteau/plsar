@@ -12,7 +12,7 @@ import java.util.*
 
 class ExchangeStartup(
     val port : Int?,
-    var pointcuts: Map<String?, Fragment?>,
+    var fragments: Map<String?, Fragment?>,
     var interceptors: Map<String?, Interceptor?>,
     var experienceProcessor: ExperienceProcessor) {
 
@@ -104,7 +104,7 @@ class ExchangeStartup(
         val repo = PLSAR.Repo()
         cache = PLSAR.Cache.Builder()
             .withSettings(settings)
-            .withPointCuts(pointcuts)
+            .withFragments(fragments)
             .withInterceptors(interceptors)
             .withUxProcessor(experienceProcessor)
             .withRepo(repo)
