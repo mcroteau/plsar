@@ -1,0 +1,21 @@
+<auth:authenticated>
+    Hello <auth:user/>!
+    You are authenticated.
+</auth:authenticated>
+
+<auth:guest>
+    <p>Super User<br/>
+        username : super<br/>
+        password : quietstorm
+    </p>
+    <p>Basic User<br/>
+        username : basic<br/>
+        password : quietstorm
+    </p>
+
+    <form action="/signin" method="post">
+        <input type="text" name="user"/>
+        <input type="text" name="pass"/>
+        <input type="submit" name="Signin!"/>
+    </form>
+</auth:guest>

@@ -1,8 +1,0 @@
-<h1>Add Media</h1>
-
-<p><a href="/todos">Back to Todos</a></p>
-
-<form action="/media/store" method="post" enctype="multipart/form-data">
-    <input type="file" name="media"/>
-    <input type="submit" value="Add Media"/>
-</form>

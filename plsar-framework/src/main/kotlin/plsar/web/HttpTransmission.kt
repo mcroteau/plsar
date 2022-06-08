@@ -134,10 +134,12 @@ class HttpTransmission(var cache: PLSAR.Cache?) : HttpHandler {
                 println("$title, $keywords, $description")
 
                 if (!support.isJar) {
-                    val webPath = Paths.get("webapp")
+                    val webPath = Paths.get("web-ux")
+
                     if (methodResponse.startsWith("/")) {
                         methodResponse = methodResponse.replaceFirst("/".toRegex(), "")
                     }
+
                     val htmlPath = webPath.toFile().absolutePath + File.separator + methodResponse
                     val viewFile = File(htmlPath)
                     if (!viewFile.exists()) {
