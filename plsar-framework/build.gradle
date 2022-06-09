@@ -89,8 +89,9 @@ publishing {
             pom {
                 name.set("plsar-framework")
                 description.set("Kotlin Web Framework. PLSAR incorporates everything you need " +
-                        "in order to build a full stack web system including: dependency injection," +
-                        "http routing, a data persistence layer, templating and view data binding")
+                        "in order to build a full stack web system including: dependency injection, " +
+                        "http routing, a data persistence layer, templating and view data binding. " +
+                        "We hope you enjoy")
                 url.set("http://github.com/mcroteau/plsar")
                 licenses {
                     license {

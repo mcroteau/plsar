@@ -133,7 +133,7 @@ class ExperienceProcessor {
                 return namespace;
             }
         }
-        throw PlsarException("namespace not found. searching for <plsar:namespace var=\"foo\">.")
+        return ""
     }
 
     @Throws(

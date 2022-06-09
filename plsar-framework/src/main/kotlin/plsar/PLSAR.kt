@@ -221,7 +221,7 @@ class PLSAR(builder: Builder) {
             return result
         }
 
-        fun getInteger(preSql: String, params: Array<Any?>): Int? {
+        fun getInt(preSql: String, params: Array<Any?>): Int? {
             var result: Int? = null
             var sql = ""
             try {

@@ -4,6 +4,11 @@
 </auth:authenticated>
 
 <auth:guest>
+    <form action="/signin" method="post">
+        <input type="text" name="user"/>
+        <input type="text" name="pass"/>
+        <input type="submit" name="Signin!"/>
+    </form>
     <p>Super User<br/>
         username : super<br/>
         password : quietstorm
@@ -12,10 +17,4 @@
         username : basic<br/>
         password : quietstorm
     </p>
-
-    <form action="/signin" method="post">
-        <input type="text" name="user"/>
-        <input type="text" name="pass"/>
-        <input type="submit" name="Signin!"/>
-    </form>
 </auth:guest>

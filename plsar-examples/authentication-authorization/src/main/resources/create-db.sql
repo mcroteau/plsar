@@ -1,6 +1,7 @@
 create table if not exists users (
 	id bigint PRIMARY KEY AUTO_INCREMENT,
-	username character varying(40) NOT NULL,
+	phone character varying(40) NOT NULL,
+	email character varying(40) NOT NULL,
 	password character varying(155) NOT NULL
 );
 
@@ -19,12 +20,12 @@ create table if not exists user_permissions(
 	permission character varying(55)
 );
 
-insert into users('super','a23fe49136f6d03528e2ae5bbced3a3129c8834dc51a97e41a25914aa8c9c320')
-insert into users('basic','a23fe49136f6d03528e2ae5bbced3a3129c8834dc51a97e41a25914aa8c9c320')
-insert into roles('SUPER')
-insert into roles('BASIC')
-insert into user_roles(1, 1)
-insert into user_roles(2, 2)
-insert into user_permissions(1, 'users:maintenance:1')
-insert into user_permissions(1, 'users:maintenance:2')
-insert into user_permissions(2, 'users:maintenance:2')
+insert into users(email, phone, password) values ('croteau.mike+uno@gmail.com','','23f41366035282e5bcd3a3129834d51a741a2514a89320');
+insert into users(email, phone, password) values ('croteau.mike+dos@gmail.com', '','23f41366035282e5bcd3a3129834d51a741a2514a89320');
+insert into roles(name) values ('SUPER');
+insert into roles(name) values ('BASIC');
+insert into user_roles(user_id, role_id) values (1, 1);
+insert into user_roles(user_id, role_id) values (2, 2);
+insert into user_permissions(user_id, permission) values (1, 'users:maintenance:1');
+insert into user_permissions(user_id, permission) values (1, 'users:maintenance:2');
+insert into user_permissions(user_id, permission) values (2, 'users:maintenance:2');

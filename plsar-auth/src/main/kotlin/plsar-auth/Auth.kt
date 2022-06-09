@@ -83,6 +83,7 @@ object Auth {
 
     fun signin(username: String, passwordUntouched: String): Boolean {
         val hashed: String = Auth.hash(passwordUntouched)
+        println(hashed)
         val password: String? = dbAccess?.getPassword(username)
         if (!isAuthenticated && password == hashed) {
             val req: HttpRequest = Auth.request

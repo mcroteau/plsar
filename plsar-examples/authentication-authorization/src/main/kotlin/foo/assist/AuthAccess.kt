@@ -1,4 +1,4 @@
-package foo.support
+package foo.assist
 
 import `plsar-auth`.support.DbAccess
 import plsar.annotate.Element
@@ -17,22 +17,22 @@ class AuthAccess : DbAccess {
         if(user == null){
             user = userRepo?.getEmail(credential)
         }
-        return user.password
+        return user?.password
     }
 
-    override fun getRoles(credential: String?): Set<String> {
-        var user: User = userRepo?.getPhone(credential)
+    override fun getRoles(credential: String?): Set<String?>? {
+        var user: User? = userRepo?.getPhone(credential)
         if(user == null){
-            user = userRepo.getEmail(credential)
+            user = userRepo?.getEmail(credential)
         }
-        return userRepo.getUserRoles(user.id)
+        return userRepo?.getUserRoles(user?.id)
     }
 
-    override fun getPermissions(credential: String?): Set<String> {
-        var user: User = userRepo?.getPhone(credential)
+    override fun getPermissions(credential: String?): Set<String?>? {
+        var user: User? = userRepo?.getPhone(credential)
         if(user == null){
-            user = userRepo.getEmail(credential)
+            user = userRepo?.getEmail(credential)
         }
-        return userRepo.getUserPermissions(user.id)
+        return userRepo?.getUserPermissions(user?.id)
     }
 }

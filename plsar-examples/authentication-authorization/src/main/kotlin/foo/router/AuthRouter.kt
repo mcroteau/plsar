@@ -6,18 +6,22 @@ import plsar.annotate.verbs.Get
 import plsar.annotate.verbs.Post
 import plsar.annotate.Text
 import plsar.model.web.HttpRequest
+import plsar.model.web.HttpResponse
 
 @HttpRouter
 class AuthRouter {
 
-    @Text
     @Get("/secret")
-    fun secret(): String {
-        return "Secret!"
+    fun secret(resp : HttpResponse?): String {
+        if(Auth.isAuthenticated){
+            return "/pages/passed.kti"
+        }
+        resp?.set("message", "authenticate pour favor.")
+        return "[redirect]/"
     }
 
-    @Get("/signin")
-    fun signinScreen(): String {
+    @Get("/")
+    fun hello(): String {
         return "/pages/signin.kti"
     }
 
@@ -30,7 +34,7 @@ class AuthRouter {
             return "[redirect]/secret"
         }
 
-        return "[redirect]/signin"
+        return "[redirect]/"
     }
 
 }
