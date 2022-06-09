@@ -16,7 +16,7 @@ interface DbAccess {
      * @param user
      * @return returns a unique set of role strings
      */
-    fun getRoles(user: Any?): Set<String?>?
+    fun getRoles(user: String?): Set<String?>?
 
     /**
      *

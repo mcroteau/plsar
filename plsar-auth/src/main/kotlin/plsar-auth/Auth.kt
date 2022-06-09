@@ -34,7 +34,7 @@ object Auth {
         get() = exchangeStorage.get()
 
     fun hasRole(role: String?): Boolean {
-        val user:Any? = Auth!!.user
+        val user:String? = Auth!!.user
         if (user != null) {
             val roles: Set<String?>? = dbAccess?.getRoles(user)
             if (roles!!.contains(role)) {
@@ -123,7 +123,7 @@ object Auth {
             return false
         }
 
-    fun configure(dbAccess: DbAccess): Boolean {
+    fun configure(dbAccess: DbAccess?): Boolean {
         Auth.dbAccess = dbAccess
         return true
     }

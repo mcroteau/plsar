@@ -1,4 +1,4 @@
-package foo
+package foo.router
 
 import `plsar-auth`.Auth
 import plsar.annotate.HttpRouter
