@@ -37,4 +37,10 @@ class AuthRouter {
         return "[redirect]/"
     }
 
+    @Get("/signout")
+    fun signout() : String {
+        Auth.signout()
+        return "[redirect]/"
+    }
+
 }

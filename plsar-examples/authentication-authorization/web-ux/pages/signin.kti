@@ -4,17 +4,18 @@
 </auth:authenticated>
 
 <auth:guest>
+    <h1>Signin.</h1>
     <form action="/signin" method="post">
         <input type="text" name="user"/>
         <input type="text" name="pass"/>
         <input type="submit" name="Signin!"/>
     </form>
-    <p>Super User<br/>
-        username : super<br/>
+    <p><strong>Super User</strong><br/>
+        username : croteau.mike+uno@gmail.com<br/>
         password : quietstorm
     </p>
-    <p>Basic User<br/>
-        username : basic<br/>
+    <p><strong>Basic User</strong><br/>
+        username : croteau.mike+dos@gmail.com<br/>
         password : quietstorm
     </p>
 </auth:guest>
