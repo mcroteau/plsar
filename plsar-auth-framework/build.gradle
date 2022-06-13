@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(":plsar-framework")
+    implementation "net.plsar:plsar-framework:1.01"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
     implementation "org.jacoco:org.jacoco.core:0.8.7"
@@ -78,7 +78,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = "net.plsar"
-            artifactId = "plsar-auth"
+            artifactId = "plsar-auth-framework"
             version = "1.00"
             from(components["kotlin"])
         }
@@ -86,7 +86,7 @@ publishing {
             artifact(javadocJar)
             artifact(sourcesJar)
             pom {
-                name.set("plsar-framework")
+                name.set("plsar-auth-framework")
                 description.set("Kotlin Authentication & Authorization Framework.")
                 url.set("http://github.com/mcroteau/plsar")
                 licenses {

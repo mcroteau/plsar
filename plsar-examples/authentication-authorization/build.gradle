@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(":plsar-auth")
+    implementation project(":plsar-auth-framework")
     implementation project(":plsar-framework")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "com.h2database:h2:2.1.210"

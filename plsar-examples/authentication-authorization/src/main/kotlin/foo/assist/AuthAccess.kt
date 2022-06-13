@@ -13,14 +13,10 @@ class AuthAccess : DbAccess {
     var userRepo: UserRepo? = null
 
     override fun getPassword(credential: String?): String? {
-        println("ace is netherlands...")
         var user: User? = userRepo?.getPhone(credential)
-        println("ace is netherlands...")
         if(user == null){
-            println("ace is working on it...")
             user = userRepo?.getEmail(credential)
         }
-        println("ace needs ice...")
         return user?.password
     }
 

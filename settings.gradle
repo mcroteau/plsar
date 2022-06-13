@@ -1,5 +1,5 @@
 include "plsar-framework"
-include "plsar-auth"
+include "plsar-auth-framework"
 include ":plsar-examples:simple-rest-endpoint"
 include ":plsar-examples:template-html-binding"
 include ":plsar-examples:authentication-authorization"
