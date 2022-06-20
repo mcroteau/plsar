@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'net.plsar'
-version '1.01'
+version '1.02'
 
 repositories {
     mavenCentral()
@@ -80,7 +80,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = "net.plsar"
             artifactId = "plsar-framework"
-            version = "1.01"
+            version = "1.02"
             from(components["kotlin"])
         }
         maven(MavenPublication) {
