@@ -1,7 +1,7 @@
-import example.Person
-import example.PersonRepo
-import example.Todo
-import example.TodoRepo
+import foo.Person
+import foo.PersonRepo
+import foo.Todo
+import foo.TodoRepo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
